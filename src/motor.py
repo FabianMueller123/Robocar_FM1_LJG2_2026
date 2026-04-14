@@ -130,7 +130,7 @@ def forward():
 
 
 outer_turn_speed = 30
-inner_turn_speed = 0
+inner_turn_speed = -20
 
 
 def turn_right():

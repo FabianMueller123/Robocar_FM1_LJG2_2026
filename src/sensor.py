@@ -20,6 +20,18 @@ def detected_middle():
 
 
 def detected_middle_left():
+    return sensor_left.value == sensor_middle.value == 1
+
+
+def detected_middle_right():
+    return sensor_right.value == sensor_middle.value == 1
+
+
+def detected_all():
+    return sensor_left.value == sensor_middle.value == sensor_right.value == 1
+
+
+def detected_right_left():
     return sensor_left.value == sensor_right.value == 1
 
 

@@ -5,21 +5,21 @@ import sensor
 
 
 def control_direction():
-    while True:
-        last_sensor = "middle"
+    last_sensor = "middle"
 
+    while True:
         if sensor.detected_middle():
             motor.forward()
             last_sensor = "middle"
 
         elif sensor.detected_left():
             motor.turn_left()
-            last_sensor = "middle"
+            last_sensor = "left"
 
         elif sensor.detected_right():
             motor.turn_right()
             last_sensor = "right"
-
+        # to do only drvies left not slight left bc its first in the command
         elif sensor.detected_middle_left():
             motor.slight_turn_left()
 
@@ -33,4 +33,4 @@ def control_direction():
             if last_sensor == "left":
                 motor.turn_left()
 
-    time.sleep(0.01)
+        time.sleep(0.01)
