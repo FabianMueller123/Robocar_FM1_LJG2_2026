@@ -78,11 +78,11 @@ def front_right(speed=0):
     current_speed_front_right = speed
 
     if speed >= 0:
-        pca.channels[2].duty_cycle = 0
-        pca.channels[3].duty_cycle = motor_speed
+        pca.channels[7].duty_cycle = 0
+        pca.channels[6].duty_cycle = motor_speed
     if speed < 0:
-        pca.channels[2].duty_cycle = motor_speed
-        pca.channels[3].duty_cycle = 0
+        pca.channels[7].duty_cycle = motor_speed
+        pca.channels[6].duty_cycle = 0
 
 
 def rear_left(speed=0):
@@ -95,11 +95,11 @@ def rear_left(speed=0):
     current_speed_rear_left = speed
 
     if speed >= 0:
-        pca.channels[4].duty_cycle = 0
-        pca.channels[5].duty_cycle = motor_speed
+        pca.channels[3].duty_cycle = 0
+        pca.channels[2].duty_cycle = motor_speed
     if speed < 0:
-        pca.channels[4].duty_cycle = motor_speed
-        pca.channels[5].duty_cycle = 0
+        pca.channels[3].duty_cycle = motor_speed
+        pca.channels[2].duty_cycle = 0
 
 
 def rear_right(speed=0):
@@ -112,14 +112,14 @@ def rear_right(speed=0):
     current_speed_rear_right = speed
 
     if speed >= 0:
-        pca.channels[6].duty_cycle = 0
-        pca.channels[7].duty_cycle = motor_speed
+        pca.channels[4].duty_cycle = 0
+        pca.channels[5].duty_cycle = motor_speed
     if speed < 0:
-        pca.channels[6].duty_cycle = motor_speed
-        pca.channels[7].duty_cycle = 0
+        pca.channels[5].duty_cycle = motor_speed
+        pca.channels[4].duty_cycle = 0
 
 
-main_speed = 80
+main_speed = 20
 
 
 def forward():
@@ -129,8 +129,8 @@ def forward():
     front_right(main_speed)
 
 
-outer_turn_speed = 50
-inner_turn_speed = 10
+outer_turn_speed = 30
+inner_turn_speed = 0
 
 
 def turn_right():
@@ -147,8 +147,8 @@ def turn_left():
     front_right(outer_turn_speed)
 
 
-slight_outer_turn_speed = 80
-slight_inner_turn_speed = 60
+slight_outer_turn_speed = 20
+slight_inner_turn_speed = 0
 
 
 def slight_turn_right():
