@@ -112,3 +112,9 @@ def rear_right(speed=0):
     if speed < 0:
         pca.channels[6].duty_cycle = motor_speed
         pca.channels[7].duty_cycle = 0
+        
+        
+init() 
+front_left(50)
+time.sleep(3)
+stop_all()
