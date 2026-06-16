@@ -1,5 +1,3 @@
-from time import sleep
-
 from gpiozero import LineSensor
 
 sensor_left = LineSensor(14)
