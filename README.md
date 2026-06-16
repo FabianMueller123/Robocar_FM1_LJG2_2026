@@ -1,4 +1,4 @@
-Robocar FM1
+Robocar 
 
 Im Rahmen dieses Projekts wurde ein autonomer Linienfolger auf Basis eines Raspberry Pi entwickelt. Ziel war es, einer schwarzen Linie auf hellem Untergrund selbstständig folgen zu können.
 
