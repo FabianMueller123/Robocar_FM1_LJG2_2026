@@ -1,7 +1,11 @@
+import json
 import time
 
 import motor
 import sensor
+
+with open("config.json") as file:
+    config = json.load(file)
 
 
 def control_direction():
@@ -35,5 +39,5 @@ def control_direction():
 
             if last_sensor == "left":
                 motor.turn_left()
-
-        time.sleep(0.01)
+        sleep = config["sleep"]
+        time.sleep(sleep)

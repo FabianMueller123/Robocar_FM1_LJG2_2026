@@ -1,8 +1,11 @@
+import json
 import logging
-import time
 
 import board
 from adafruit_pca9685 import PCA9685
+
+with open("config.json") as file:
+    config = json.load(file)
 
 log = logging.getLogger(__name__)
 
@@ -19,7 +22,7 @@ current_speed_rear_right = 0
 
 def init():
     log.info("initialize the PWM module")
-    pca.frequency = 50
+    pca.frequency = config["pca_frequency"]
     pca.channels[0].duty_cycle = 0
     pca.channels[1].duty_cycle = 0
     pca.channels[2].duty_cycle = 0
@@ -51,9 +54,12 @@ def stop_all():
     current_speed_rear_right = 0
 
 
+max_speed = 100
+
+
 def front_left(speed=0):
     global current_speed_front_left
-    if abs(speed) > 100:
+    if abs(speed) > max_speed:
         log.error(f"speed {speed} outside of range 0-100")
         return
 
@@ -70,7 +76,7 @@ def front_left(speed=0):
 
 def front_right(speed=0):
     global current_speed_front_right
-    if abs(speed) > 100:
+    if abs(speed) > max_speed:
         log.error(f"speed {speed} outside of range 0-100")
         return
 
@@ -87,7 +93,7 @@ def front_right(speed=0):
 
 def rear_left(speed=0):
     global current_speed_rear_left
-    if abs(speed) > 100:
+    if abs(speed) > max_speed:
         log.error(f"speed {speed} outside of range 0-100")
         return
 
@@ -104,7 +110,7 @@ def rear_left(speed=0):
 
 def rear_right(speed=0):
     global current_speed_rear_right
-    if abs(speed) > 100:
+    if abs(speed) > max_speed:
         log.error(f"speed {speed} outside of range 0-100")
         return
 
@@ -115,11 +121,11 @@ def rear_right(speed=0):
         pca.channels[4].duty_cycle = 0
         pca.channels[5].duty_cycle = motor_speed
     if speed < 0:
-        pca.channels[5].duty_cycle = motor_speed
-        pca.channels[4].duty_cycle = 0
+        pca.channels[4].duty_cycle = motor_speed
+        pca.channels[5].duty_cycle = 0
 
 
-main_speed = 20
+main_speed = config["main_speed"]
 
 
 def forward():
@@ -129,8 +135,8 @@ def forward():
     front_right(main_speed)
 
 
-outer_turn_speed = 30
-inner_turn_speed = -20
+outer_turn_speed = config["outer_turn_speed"]
+inner_turn_speed = config["inner_turn_speed"]
 
 
 def turn_right():
@@ -147,8 +153,8 @@ def turn_left():
     front_right(outer_turn_speed)
 
 
-slight_outer_turn_speed = 20
-slight_inner_turn_speed = 0
+slight_outer_turn_speed = config["slight_outer_turn_speed"]
+slight_inner_turn_speed = config["slight_inner_turn_speed"]
 
 
 def slight_turn_right():
